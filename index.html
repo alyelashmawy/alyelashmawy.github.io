@@ -68,8 +68,6 @@ h2 { font-family: var(--serif); font-size: clamp(2rem, 3vw, 2.75rem); font-weigh
 .project-tools { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
 .tool-tag { font-family: var(--mono); font-size: 11px; color: var(--accent2); background: rgba(126,184,154,0.08); border: 0.5px solid rgba(126,184,154,0.2); padding: 0.25rem 0.6rem; border-radius: 2px; }
 
-.stl-viewer-wrap { position: relative; width: 100%; height: 240px; background: var(--bg3); border-bottom: 0.5px solid var(--border); overflow: hidden; cursor: grab; }
-.stl-viewer-wrap:active { cursor: grabbing; }
 .stl-canvas { width: 100%; height: 100%; display: block; }
 .stl-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; padding: 1rem; text-align: center; }
 .stl-placeholder-icon { width: 48px; height: 48px; border: 0.5px solid var(--border-strong); border-radius: 2px; display: flex; align-items: center; justify-content: center; }
@@ -82,59 +80,44 @@ h2 { font-family: var(--serif); font-size: clamp(2rem, 3vw, 2.75rem); font-weigh
 .stl-overlay-btn:hover { color: var(--accent); border-color: var(--accent); }
 .stl-overlay-btn svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
 .stl-hint { position: absolute; bottom: 10px; left: 10px; font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.06em; pointer-events: none; }
-.stl-upload-btn { position: absolute; top: 10px; right: 10px; background: rgba(200,169,110,0.12); border: 0.5px solid rgba(200,169,110,0.3); color: var(--accent); font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.35rem 0.75rem; cursor: pointer; border-radius: 2px; transition: background 0.2s; display: flex; align-items: center; gap: 0.4rem; }
-.stl-upload-btn:hover { background: rgba(200,169,110,0.2); }
-.stl-upload-btn svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
-.stl-upload-input { display: none; }
 
-/* VIEWCUBE */
-.viewcube-mount { position: absolute; top: 12px; left: 12px; display: none; flex-direction: column; align-items: center; gap: 6px; z-index: 6; }
-.viewcube { width: 56px; height: 56px; perspective: 260px; }
+/* VIEWCUBE — smaller, top-right */
+.viewcube-mount { position: absolute; top: 10px; right: 10px; display: none; flex-direction: column; align-items: center; gap: 4px; z-index: 6; }
+.viewcube { width: 36px; height: 36px; perspective: 180px; }
 .viewcube-cube { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; }
-.viewcube-face { position: absolute; width: 56px; height: 56px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); background: rgba(20,20,18,0.82); border: 0.5px solid var(--border-strong); }
+.viewcube-face { position: absolute; width: 36px; height: 36px; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); background: rgba(20,20,18,0.82); border: 0.5px solid var(--border-strong); }
 .vc-cell { display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.12s; }
 .vc-cell:hover { background: var(--accent); }
-.vc-center { font-family: var(--mono); font-size: 7px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); }
+.vc-center { font-family: var(--mono); font-size: 5px; letter-spacing: 0.02em; text-transform: uppercase; color: var(--text-muted); }
 .vc-center:hover { color: #0d0d0b; }
 .viewcube-face:hover .vc-corner, .viewcube-face:hover .vc-edge { box-shadow: inset 0 0 0 0.5px rgba(255,255,255,0.07); }
-.vc-front  { transform: translateZ(28px); }
-.vc-back   { transform: rotateY(180deg) translateZ(28px); }
-.vc-right  { transform: rotateY(90deg) translateZ(28px); }
-.vc-left   { transform: rotateY(-90deg) translateZ(28px); }
-.vc-top    { transform: rotateX(90deg) translateZ(28px); }
-.vc-bottom { transform: rotateX(-90deg) translateZ(28px); }
-.viewcube-home { font-family: var(--mono); font-size: 9px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); background: rgba(20,20,18,0.82); border: 0.5px solid var(--border-strong); border-radius: 2px; padding: 0.25rem 0.6rem; cursor: pointer; transition: color 0.15s, border-color 0.15s; display: flex; align-items: center; gap: 0.3rem; }
-.viewcube-home:hover { color: var(--accent); border-color: var(--accent); }
-.viewcube-home svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 2; }
+.vc-front  { transform: translateZ(18px); }
+.vc-back   { transform: rotateY(180deg) translateZ(18px); }
+.vc-right  { transform: rotateY(90deg) translateZ(18px); }
+.vc-left   { transform: rotateY(-90deg) translateZ(18px); }
+.vc-top    { transform: rotateX(90deg) translateZ(18px); }
+.vc-bottom { transform: rotateX(-90deg) translateZ(18px); }
+.viewcube-home { display: none; } /* Home button removed */
 
-/* ANGLE CONTROL PANEL */
-.angle-control { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: none; align-items: center; gap: 5px; font-family: var(--mono); font-size: 10px; color: var(--text-muted); background: rgba(13,13,11,0.85); border: 0.5px solid var(--border-strong); border-radius: 2px; padding: 0.3rem 0.55rem; backdrop-filter: blur(4px); white-space: nowrap; z-index: 7; max-width: calc(100% - 20px); }
-.angle-lbl { color: var(--accent); letter-spacing: 0.04em; text-transform: uppercase; }
-.angle-input { width: 36px; background: var(--bg3); border: 0.5px solid var(--border); color: var(--text); font-family: var(--mono); font-size: 10px; padding: 2px 3px; border-radius: 2px; text-align: center; }
-.angle-input:focus { outline: none; border-color: var(--accent); }
-.angle-sethome { background: rgba(200,169,110,0.12); border: 0.5px solid rgba(200,169,110,0.3); color: var(--accent); font-family: var(--mono); font-size: 9px; letter-spacing: 0.04em; text-transform: uppercase; padding: 3px 7px; border-radius: 2px; cursor: pointer; transition: background 0.15s; }
-.angle-sethome:hover { background: rgba(200,169,110,0.2); }
-
-/* PHOTO SLIDER */
-.photo-strip { position: relative; height: 180px; background: var(--bg3); border-bottom: 0.5px solid var(--border); overflow: hidden; }
-.photo-track { position: absolute; inset: 0; }
-.photo-slide { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s ease; }
-.photo-slide.active { opacity: 1; }
-.photo-slide img { max-width: 100%; max-height: 100%; object-fit: contain; display: block; }
-.photo-empty { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; }
-.photo-empty svg { width: 28px; height: 28px; stroke: var(--text-dim); fill: none; stroke-width: 1.5; }
-.photo-empty p { font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; }
-.photo-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 30px; height: 30px; display: none; align-items: center; justify-content: center; background: rgba(13,13,11,0.7); border: 0.5px solid var(--border-strong); color: var(--text-muted); cursor: pointer; border-radius: 2px; font-size: 16px; line-height: 1; backdrop-filter: blur(4px); transition: color 0.15s, border-color 0.15s; z-index: 3; }
-.photo-arrow:hover { color: var(--accent); border-color: var(--accent); }
-.photo-prev { left: 10px; }
-.photo-next { right: 10px; }
-.photo-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: none; gap: 6px; z-index: 3; }
-.photo-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.25); cursor: pointer; transition: background 0.15s; }
-.photo-dot.active { background: var(--accent); }
-.photo-upload-btn { position: absolute; top: 10px; right: 10px; z-index: 4; background: rgba(200,169,110,0.12); border: 0.5px solid rgba(200,169,110,0.3); color: var(--accent); font-family: var(--mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.35rem 0.75rem; cursor: pointer; border-radius: 2px; transition: background 0.2s; display: flex; align-items: center; gap: 0.4rem; }
-.photo-upload-btn:hover { background: rgba(200,169,110,0.2); }
-.photo-upload-btn svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
-.photo-upload-input { display: none; }
+/* UNIFIED MEDIA SLIDER — holds both the 3D viewer slide and photo slides */
+.media-slider { position: relative; height: 280px; background: var(--bg3); border-bottom: 0.5px solid var(--border); overflow: hidden; }
+.media-track { position: absolute; inset: 0; }
+.media-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
+.media-slide.active { opacity: 1; pointer-events: auto; }
+.media-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* The 3D viewer slide hosts the canvas — no image, just the canvas fills it */
+.media-slide.is-viewer { cursor: grab; background: var(--bg3); }
+.media-slide.is-viewer:active { cursor: grabbing; }
+.media-slide.is-viewer canvas { width: 100%; height: 100%; display: block; }
+.stl-loading { position: absolute; inset: 0; display: none; align-items: center; justify-content: center; font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase; background: var(--bg3); z-index: 5; }
+.media-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; display: none; align-items: center; justify-content: center; background: rgba(13,13,11,0.7); border: 0.5px solid var(--border-strong); color: var(--text-muted); cursor: pointer; border-radius: 2px; font-size: 16px; line-height: 1; backdrop-filter: blur(4px); transition: color 0.15s, border-color 0.15s; z-index: 4; }
+.media-arrow:hover { color: var(--accent); border-color: var(--accent); }
+.media-prev { left: 8px; }
+.media-next { right: 8px; }
+.media-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: none; gap: 6px; z-index: 4; align-items: center; }
+.media-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.25); cursor: pointer; transition: background 0.15s; flex-shrink: 0; }
+.media-dot.active { background: var(--accent); }
+.media-dot.is-3d { border-radius: 2px; width: 8px; height: 8px; }
 
 .modal-backdrop { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.92); align-items: center; justify-content: center; }
 .modal-backdrop.open { display: flex; }
@@ -161,7 +144,8 @@ h2 { font-family: var(--serif); font-size: clamp(2rem, 3vw, 2.75rem); font-weigh
 .exp-content p { font-size: 14px; color: var(--text-muted); line-height: 1.75; }
 
 .personal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 0.5px solid var(--border); }
-.personal-card { background: var(--bg2); padding: 2rem; }
+.personal-card { background: var(--bg2); display: flex; flex-direction: column; }
+.personal-card-body { padding: 2rem; }
 .personal-card h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: var(--text); margin-bottom: 0.75rem; }
 .personal-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
 
@@ -174,7 +158,6 @@ h2 { font-family: var(--serif); font-size: clamp(2rem, 3vw, 2.75rem); font-weigh
 .contact-row:hover { border-color: var(--accent); }
 .contact-row-label { font-family: var(--mono); font-size: 11px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; width: 60px; }
 .contact-row-val { font-size: 14px; color: var(--text); }
-.visa-badge { display: inline-flex; align-items: center; gap: 0.4rem; font-family: var(--mono); font-size: 11px; color: var(--accent2); background: rgba(126,184,154,0.08); border: 0.5px solid rgba(126,184,154,0.2); padding: 0.4rem 0.9rem; border-radius: 2px; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 1.25rem; }
 
 footer { border-top: 0.5px solid var(--border); padding: 2rem 3rem; display: flex; justify-content: space-between; align-items: center; }
 footer p { font-size: 12px; color: var(--text-dim); font-family: var(--mono); }
@@ -280,12 +263,28 @@ footer p { font-size: 12px; color: var(--text-dim); font-family: var(--mono); }
   <h2>Automotive Projects</h2>
   <div class="personal-grid">
     <div class="personal-card">
-      <h3>BMW Engine and Transmission Swap</h3>
-      <p>Planned and executed a full engine and transmission swap including hydraulic system work, tolerancing, and safety verification. Developed independent fault diagnosis capability without workshop infrastructure or formal supervision.</p>
+      <div class="media-slider" id="auto-slider-bmw">
+        <div class="media-track" id="auto-track-bmw"></div>
+        <button class="media-arrow media-prev" id="auto-prev-bmw">&#8249;</button>
+        <button class="media-arrow media-next" id="auto-next-bmw">&#8250;</button>
+        <div class="media-dots" id="auto-dots-bmw"></div>
+      </div>
+      <div class="personal-card-body">
+        <h3>BMW Engine and Transmission Swap</h3>
+        <p>Planned and executed a full engine and transmission swap including hydraulic system work, tolerancing, and safety verification. Developed independent fault diagnosis capability without workshop infrastructure or formal supervision.</p>
+      </div>
     </div>
     <div class="personal-card">
-      <h3>Audi S4 Restoration</h3>
-      <p>Purchased a non-roadworthy Audi S4 and restored it to full roadworthiness compliance. Work included transmission removal, gasket and seal replacement, axle shaft and sensor work, all completed independently over two years.</p>
+      <div class="media-slider" id="auto-slider-audi">
+        <div class="media-track" id="auto-track-audi"></div>
+        <button class="media-arrow media-prev" id="auto-prev-audi">&#8249;</button>
+        <button class="media-arrow media-next" id="auto-next-audi">&#8250;</button>
+        <div class="media-dots" id="auto-dots-audi"></div>
+      </div>
+      <div class="personal-card-body">
+        <h3>Audi S4 Restoration</h3>
+        <p>Purchased a non-roadworthy Audi S4 and restored it to full roadworthiness compliance. Work included transmission removal, gasket and seal replacement, axle shaft and sensor work, all completed independently over two years.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -296,13 +295,13 @@ footer p { font-size: 12px; color: var(--text-dim); font-family: var(--mono); }
   <div>
     <h2 class="contact-heading">Let's talk<br><em>engineering.</em></h2>
     <p class="contact-sub">Available immediately in London. Open to graduate mechanical engineering roles across design, analysis, and product development.</p>
-    <span class="visa-badge">UK Youth Mobility Visa, No Sponsorship Required</span>
   </div>
   <div class="contact-details">
-    <a class="contact-row" href="mailto:aliaaelashmawy@gmail.com"><span class="contact-row-label">Email</span><span class="contact-row-val">aliaaelashmawy@gmail.com</span></a>
-    <a class="contact-row" href="tel:+447426092124"><span class="contact-row-label">Phone</span><span class="contact-row-val">+44 7426 092124</span></a>
+    <div class="contact-row" id="email-row">
+      <span class="contact-row-label">Email</span>
+      <span class="contact-row-val" id="obf-email" style="cursor:pointer;" title="Click to reveal email">Click to reveal</span>
+    </div>
     <a class="contact-row" href="https://linkedin.com/in/alyelashmawy" target="_blank"><span class="contact-row-label">LinkedIn</span><span class="contact-row-val">linkedin.com/in/alyelashmawy</span></a>
-    <a class="contact-row" href="#"><span class="contact-row-label">Location</span><span class="contact-row-val">London, UK</span></a>
   </div>
 </div>
 
@@ -320,7 +319,6 @@ footer p { font-size: 12px; color: var(--text-dim); font-family: var(--mono); }
     <div class="modal-canvas-wrap" id="modal-canvas-wrap">
       <canvas class="modal-canvas" id="modal-canvas"></canvas>
       <div class="viewcube-mount" id="viewcube-modal"></div>
-      <div class="angle-readout" id="readout-modal">Tilt 0&deg; Turn 0&deg;</div>
     </div>
     <div class="modal-controls">
       <span class="modal-hint">Drag to rotate, scroll to zoom, right-click drag to pan</span>
@@ -577,56 +575,6 @@ function syncCube(state) {
   state.cube.style.transform = 'rotateZ(' + rz + 'deg) rotateX(' + rx + 'deg) rotateY(' + ry + 'deg)';
 }
 
-// Live angle control: editable tilt/turn fields plus a per-model Set as Home
-function normDeg(r) {
-  let d = r * 180 / Math.PI;
-  d = ((d + 180) % 360 + 360) % 360 - 180;
-  return d;
-}
-function buildAngleControl(el, state) {
-  el.innerHTML = '';
-  el.className = 'angle-control';
-  function mkInput() { const i = document.createElement('input'); i.type = 'number'; i.step = '1'; i.className = 'angle-input'; return i; }
-  const tilt = mkInput(), turn = mkInput(), roll = mkInput();
-  const apply = () => {
-    const tx = (parseFloat(tilt.value) || 0) * Math.PI / 180;
-    const ty = (parseFloat(turn.value) || 0) * Math.PI / 180;
-    const tz = (parseFloat(roll.value) || 0) * Math.PI / 180;
-    setViewAngles(state, [tx, ty, tz], false);
-  };
-  [tilt, turn, roll].forEach(inp => {
-    inp.addEventListener('focus', () => { state.editingAngles = true; state.autoRotate = false; });
-    inp.addEventListener('blur', () => { state.editingAngles = false; });
-    inp.addEventListener('change', apply);
-    inp.addEventListener('keydown', e => { if (e.key === 'Enter') { apply(); inp.blur(); } });
-  });
-  const tL = document.createElement('span'); tL.className = 'angle-lbl'; tL.textContent = 'Tilt';
-  const uL = document.createElement('span'); uL.className = 'angle-lbl'; uL.textContent = 'Turn';
-  const rL = document.createElement('span'); rL.className = 'angle-lbl'; rL.textContent = 'Roll';
-  const setHome = document.createElement('button'); setHome.className = 'angle-sethome'; setHome.textContent = 'Set as Home';
-  setHome.addEventListener('click', ev => {
-    ev.stopPropagation();
-    if (!state.obj) return;
-    const angles = [state.obj.rotation.x, state.obj.rotation.y, state.obj.rotation.z];
-    state.homeAngles = angles;
-    if (state.source) state.source.homeAngles = angles;
-    setHome.textContent = 'Home saved';
-    setTimeout(() => { setHome.textContent = 'Set as Home'; }, 1200);
-  });
-  el.appendChild(tL); el.appendChild(tilt);
-  el.appendChild(uL); el.appendChild(turn);
-  el.appendChild(rL); el.appendChild(roll);
-  el.appendChild(setHome);
-  el.style.display = 'flex';
-  state.tiltInput = tilt; state.turnInput = turn; state.rollInput = roll;
-}
-function updateReadout(state) {
-  if (!state.obj || state.editingAngles) return;
-  if (state.tiltInput) state.tiltInput.value = Math.round(normDeg(state.obj.rotation.x));
-  if (state.turnInput) state.turnInput.value = Math.round(normDeg(state.obj.rotation.y));
-  if (state.rollInput) state.rollInput.value = Math.round(normDeg(state.obj.rotation.z));
-}
-
 // Build the clickable ViewCube DOM into a mount element, wired to a viewer state
 function buildViewCube(mountEl, state) {
   mountEl.innerHTML = '';
@@ -635,14 +583,13 @@ function buildViewCube(mountEl, state) {
   const inner = document.createElement('div');
   inner.className = 'viewcube-cube';
 
-  // Each face: outward normal, in-plane grid axes (Rcol = left-to-right, Drow = top-to-bottom in world signs), label
   const faceCfg = [
-    { cls: 'vc-front',  normal: [0,0,1],  Rcol: [1,0,0],  Drow: [0,-1,0], label: 'Front'  },
-    { cls: 'vc-back',   normal: [0,0,-1], Rcol: [-1,0,0], Drow: [0,-1,0], label: 'Back'   },
-    { cls: 'vc-right',  normal: [1,0,0],  Rcol: [0,0,1],  Drow: [0,-1,0], label: 'Right'  },
-    { cls: 'vc-left',   normal: [-1,0,0], Rcol: [0,0,-1], Drow: [0,-1,0], label: 'Left'   },
-    { cls: 'vc-top',    normal: [0,1,0],  Rcol: [1,0,0],  Drow: [0,0,1],  label: 'Top'    },
-    { cls: 'vc-bottom', normal: [0,-1,0], Rcol: [1,0,0],  Drow: [0,0,-1], label: 'Bottom' }
+    { cls: 'vc-front',  normal: [0,0,1],  Rcol: [1,0,0],  Drow: [0,-1,0], label: 'F' },
+    { cls: 'vc-back',   normal: [0,0,-1], Rcol: [-1,0,0], Drow: [0,-1,0], label: 'B' },
+    { cls: 'vc-right',  normal: [1,0,0],  Rcol: [0,0,1],  Drow: [0,-1,0], label: 'R' },
+    { cls: 'vc-left',   normal: [-1,0,0], Rcol: [0,0,-1], Drow: [0,-1,0], label: 'L' },
+    { cls: 'vc-top',    normal: [0,1,0],  Rcol: [1,0,0],  Drow: [0,0,1],  label: 'T' },
+    { cls: 'vc-bottom', normal: [0,-1,0], Rcol: [1,0,0],  Drow: [0,0,-1], label: 'Bt' }
   ];
 
   faceCfg.forEach(f => {
@@ -669,14 +616,7 @@ function buildViewCube(mountEl, state) {
     inner.appendChild(faceEl);
   });
   cube.appendChild(inner);
-
-  const home = document.createElement('button');
-  home.className = 'viewcube-home';
-  home.innerHTML = '<svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> Home';
-  home.addEventListener('click', ev => { ev.stopPropagation(); setView(state, 'home'); });
-
   mountEl.appendChild(cube);
-  mountEl.appendChild(home);
   mountEl.style.display = 'flex';
   state.cube = inner;
 }
@@ -712,7 +652,6 @@ function createViewer(canvasId, wrapId) {
     stepTween(state);
     if (state.autoRotate && state.obj && !state.isDragging) state.obj.rotation.z += 0.008;
     syncCube(state);
-    updateReadout(state);
     renderer.render(scene, camera);
   })();
 
@@ -756,55 +695,6 @@ function frameInto(state, obj3d) {
   state.zoom = 3; state.camera.position.z = 3; state.autoRotate = true;
 }
 
-/* ---------- UPLOAD HANDLING ---------- */
-function setupUpload(inputId, canvasId, placeholderId, loadingId, fullscreenBtnId, hintId, viewcubeId, label) {
-  const input = document.getElementById(inputId);
-  createViewer(canvasId, canvasId.replace('canvas','wrap'));
-
-  input.addEventListener('change', async e => {
-    const files = Array.from(e.target.files);
-    if (!files.length) return;
-    const objFile = files.find(f => /\.obj$/i.test(f.name));
-    const mtlFile = files.find(f => /\.mtl$/i.test(f.name));
-    const stlFile = files.find(f => /\.stl$/i.test(f.name));
-    const imageFiles = files.filter(f => /\.(png|jpe?g|bmp|gif)$/i.test(f.name));
-
-    document.getElementById(loadingId).style.display = 'flex';
-    const state = viewers[canvasId];
-
-    try {
-      let obj3d = null;
-      if (objFile) {
-        const objText = await objFile.text();
-        const materials = mtlFile ? parseMTL(await mtlFile.text()) : null;
-        const textureMap = imageFiles.length ? await loadTextures(imageFiles) : {};
-        obj3d = buildOBJObject(parseOBJ(objText), materials, textureMap);
-      } else if (stlFile) {
-        obj3d = buildSTLObject(parseSTL(await stlFile.arrayBuffer()));
-      } else {
-        document.getElementById(loadingId).style.display = 'none';
-        alert('Please include an .obj file (with its .mtl) or an .stl file.');
-        return;
-      }
-      document.getElementById(placeholderId).style.display = 'none';
-      document.getElementById(canvasId).style.display = 'block';
-      document.getElementById(fullscreenBtnId).style.display = 'flex';
-      document.getElementById(hintId).style.display = 'block';
-      document.getElementById(loadingId).style.display = 'none';
-      frameInto(state, obj3d);
-      buildViewCube(document.getElementById(viewcubeId), state);
-      const readoutEl = document.getElementById(canvasId.replace('canvas','readout'));
-      if (readoutEl) buildAngleControl(readoutEl, state);
-    } catch (err) {
-      document.getElementById(loadingId).style.display = 'none';
-      console.error(err);
-      alert('Could not load that model. Check the OBJ and MTL files are valid.');
-    }
-  });
-
-  document.getElementById(fullscreenBtnId).addEventListener('click', () => openModal(canvasId, label));
-}
-
 /* ---------- MODAL ---------- */
 let modalViewer = null;
 function ensureModalViewer() {
@@ -837,7 +727,6 @@ function ensureModalViewer() {
     stepTween(modalViewer);
     if (modalViewer.autoRotate && modalViewer.obj && !modalViewer.isDragging) modalViewer.obj.rotation.z += 0.008;
     syncCube(modalViewer);
-    updateReadout(modalViewer);
     renderer.render(scene, camera);
   })();
 
@@ -874,8 +763,6 @@ function openModal(sourceCanvasId, label) {
     mv.homeAngles = src.homeAngles;
     mv.zoom = 3; mv.camera.position.z = 3; mv.autoRotate = true;
     buildViewCube(document.getElementById('viewcube-modal'), mv);
-    const mReadout = document.getElementById('readout-modal');
-    if (mReadout) buildAngleControl(mReadout, mv);
   }
   setTimeout(() => mv._resize(), 50);
 }
@@ -969,40 +856,16 @@ const PROJECTS = [
 ];
 
 /* ---------- CARD RENDERER ---------- */
-// Builds the full HTML for one project card and appends it to the grid.
-// Called once per project in PROJECTS; no need to touch this function
-// when adding or editing projects.
 function renderCard(p) {
   const card = document.createElement('div');
   card.className = 'project-card';
-  const cubeIcon = `<svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>`;
-  const uploadIcon = `<svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>`;
-  const fsIcon = `<svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>`;
-  const photoIcon = `<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>`;
   card.innerHTML = `
-    <div class="stl-viewer-wrap" id="wrap-${p.id}">
-      <canvas class="stl-canvas" id="canvas-${p.id}"></canvas>
-      <div class="stl-placeholder" id="placeholder-${p.id}">
-        <div class="stl-placeholder-icon">${cubeIcon}</div>
-        <p>${p.title}</p>
-        <span>Upload OBJ + MTL to enable 3D viewer</span>
-      </div>
+    <div class="media-slider" id="slider-${p.id}">
+      <div class="media-track" id="track-${p.id}"></div>
       <div class="stl-loading" id="loading-${p.id}">Loading model...</div>
-      <div class="viewcube-mount" id="viewcube-${p.id}"></div>
-      <label class="stl-upload-btn" for="upload-${p.id}">${uploadIcon} Upload OBJ + MTL</label>
-      <input class="stl-upload-input" type="file" id="upload-${p.id}" accept=".obj,.mtl,.stl,.png,.jpg,.jpeg,.bmp" multiple>
-      <button class="stl-overlay-btn" id="fullscreen-${p.id}" style="display:none">${fsIcon} Fullscreen</button>
-      <span class="stl-hint" id="hint-${p.id}" style="display:none">Drag to rotate, scroll to zoom</span>
-      <div class="angle-readout" id="readout-${p.id}">Tilt 0&deg; Turn 0&deg;</div>
-    </div>
-    <div class="photo-strip" id="photos-${p.id}">
-      <div class="photo-track" id="phototrack-${p.id}"></div>
-      <div class="photo-empty" id="photoempty-${p.id}">${photoIcon}<p>Add project photos</p></div>
-      <button class="photo-arrow photo-prev" id="photoprev-${p.id}" aria-label="Previous">&#8249;</button>
-      <button class="photo-arrow photo-next" id="photonext-${p.id}" aria-label="Next">&#8250;</button>
-      <div class="photo-dots" id="photodots-${p.id}"></div>
-      <label class="photo-upload-btn" for="photoupload-${p.id}">${uploadIcon} Add Photos</label>
-      <input type="file" id="photoupload-${p.id}" accept="image/*" multiple class="photo-upload-input">
+      <button class="media-arrow media-prev" id="prev-${p.id}">&#8249;</button>
+      <button class="media-arrow media-next" id="next-${p.id}">&#8250;</button>
+      <div class="media-dots" id="dots-${p.id}"></div>
     </div>
     <div class="project-card-body">
       <p class="project-type">${p.type}</p>
@@ -1014,146 +877,221 @@ function renderCard(p) {
   document.getElementById('projects-grid').appendChild(card);
 }
 
-/* ---------- PHOTO SLIDER ---------- */
-// Initialises the slider for one project.
-// Also accepts an optional array of URL strings to pre-load photos from the
-// images/ folder (used by autoLoadPhotos below on GitHub Pages).
-function setupPhotoSlider(prefix, preloadUrls) {
-  const input = document.getElementById('photoupload-' + prefix);
-  const track = document.getElementById('phototrack-' + prefix);
-  const empty = document.getElementById('photoempty-' + prefix);
-  const dotsEl = document.getElementById('photodots-' + prefix);
-  const prevBtn = document.getElementById('photoprev-' + prefix);
-  const nextBtn = document.getElementById('photonext-' + prefix);
-  const strip = document.getElementById('photos-' + prefix);
-  const state = { slides: [], dots: [], index: 0, timer: null };
+/* ---------- UNIFIED MEDIA SLIDER ---------- */
+// Builds a slider holding a 3D viewer slide (first, if model exists) and photo slides.
+// viewerConfig = { id, canvasId, label } or null; photos = array of URL strings.
+function setupMediaSlider(sliderEl, viewerConfig, photos) {
+  const track = sliderEl.querySelector('.media-track');
+  const prevBtn = sliderEl.querySelector('.media-prev');
+  const nextBtn = sliderEl.querySelector('.media-next');
+  const dotsEl = sliderEl.querySelector('.media-dots');
+  const loadingEl = sliderEl.querySelector('.stl-loading');
 
-  function addPhotoFromUrl(url, alt) {
-    const slide = document.createElement('div');
-    slide.className = 'photo-slide';
-    const img = document.createElement('img');
-    img.src = url; img.alt = alt || prefix + ' project photo';
-    slide.appendChild(img);
-    track.appendChild(slide);
-    state.slides.push(slide);
-    const dot = document.createElement('div');
-    dot.className = 'photo-dot';
-    const idx = state.dots.length;
-    dot.addEventListener('click', () => { show(idx); startAuto(); });
-    dotsEl.appendChild(dot);
-    state.dots.push(dot);
-  }
+  const slides = [];
+  const dots = [];
+  let current = 0;
+  let timer = null;
 
   function show(i) {
-    if (!state.slides.length) return;
-    state.index = (i + state.slides.length) % state.slides.length;
-    state.slides.forEach((s, k) => s.classList.toggle('active', k === state.index));
-    state.dots.forEach((d, k) => d.classList.toggle('active', k === state.index));
+    if (!slides.length) return;
+    current = (i + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle('active', k === current));
+    dots.forEach((d, k) => d.classList.toggle('active', k === current));
   }
-  function next() { show(state.index + 1); }
-  function prev() { show(state.index - 1); }
-  function startAuto() { stopAuto(); if (state.slides.length > 1) state.timer = setInterval(next, 4000); }
-  function stopAuto() { if (state.timer) { clearInterval(state.timer); state.timer = null; } }
+  function next() { show(current + 1); }
+  function prev() { show(current - 1); }
+  function startAuto() { stopAuto(); if (slides.length > 1) timer = setInterval(next, 5000); }
+  function stopAuto() { if (timer) { clearInterval(timer); timer = null; } }
 
-  prevBtn.addEventListener('click', () => { prev(); startAuto(); });
-  nextBtn.addEventListener('click', () => { next(); startAuto(); });
-  strip.addEventListener('mouseenter', stopAuto);
-  strip.addEventListener('mouseleave', startAuto);
-
-  // Pre-load photos from paths defined in PROJECTS.photos (works on GitHub Pages)
-  if (preloadUrls && preloadUrls.length) {
-    preloadUrls.forEach(url => addPhotoFromUrl(url));
-    empty.style.display = 'none';
-    const multi = preloadUrls.length > 1;
-    prevBtn.style.display = multi ? 'flex' : 'none';
-    nextBtn.style.display = multi ? 'flex' : 'none';
-    dotsEl.style.display = multi ? 'flex' : 'none';
-    show(0);
-    startAuto();
+  function addDot(is3d) {
+    const dot = document.createElement('div');
+    dot.className = 'media-dot' + (is3d ? ' is-3d' : '');
+    const idx = dots.length;
+    dot.addEventListener('click', () => { show(idx); startAuto(); });
+    dotsEl.appendChild(dot);
+    dots.push(dot);
   }
 
-  // Manual upload — always available as a fallback
-  input.addEventListener('change', e => {
-    const files = Array.from(e.target.files).filter(f => /^image\//.test(f.type));
-    files.forEach(f => addPhotoFromUrl(URL.createObjectURL(f), f.name));
-    if (state.slides.length) {
-      empty.style.display = 'none';
-      const multi = state.slides.length > 1;
-      prevBtn.style.display = multi ? 'flex' : 'none';
-      nextBtn.style.display = multi ? 'flex' : 'none';
-      dotsEl.style.display = multi ? 'flex' : 'none';
-      show(state.index);
-      startAuto();
-    }
+  // 3D viewer slide — always first if model is set
+  if (viewerConfig) {
+    const slide = document.createElement('div');
+    slide.className = 'media-slide is-viewer';
+    const canvas = document.createElement('canvas');
+    canvas.id = viewerConfig.canvasId;
+    const vcMount = document.createElement('div');
+    vcMount.className = 'viewcube-mount';
+    vcMount.id = 'viewcube-' + viewerConfig.id;
+    const hint = document.createElement('span');
+    hint.className = 'stl-hint';
+    hint.textContent = 'Drag to rotate · Scroll to zoom';
+    const fsBtn = document.createElement('button');
+    fsBtn.className = 'stl-overlay-btn';
+    fsBtn.id = 'fullscreen-' + viewerConfig.id;
+    fsBtn.style.display = 'none';
+    fsBtn.innerHTML = '<svg viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg> Fullscreen';
+    fsBtn.addEventListener('click', () => openModal(viewerConfig.canvasId, viewerConfig.label));
+    slide.appendChild(canvas);
+    slide.appendChild(vcMount);
+    slide.appendChild(hint);
+    slide.appendChild(fsBtn);
+    track.appendChild(slide);
+    slides.push(slide);
+    addDot(true);
+    setupViewer(viewerConfig.canvasId, viewerConfig.canvasId);
+  }
+
+  // Photo slides
+  photos.forEach(url => {
+    const slide = document.createElement('div');
+    slide.className = 'media-slide';
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = 'Project photo';
+    slide.appendChild(img);
+    track.appendChild(slide);
+    slides.push(slide);
+    addDot(false);
   });
+
+  if (!slides.length) return null;
+
+  const multi = slides.length > 1;
+  if (prevBtn) prevBtn.style.display = multi ? 'flex' : 'none';
+  if (nextBtn) nextBtn.style.display = multi ? 'flex' : 'none';
+  if (dotsEl) dotsEl.style.display = multi ? 'flex' : 'none';
+
+  if (prevBtn) prevBtn.addEventListener('click', () => { prev(); startAuto(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { next(); startAuto(); });
+  sliderEl.addEventListener('mouseenter', stopAuto);
+  sliderEl.addEventListener('mouseleave', startAuto);
+
+  show(0);
+  startAuto();
+  return { slides, loadingEl };
 }
 
-/* ---------- AUTO-LOAD MODEL FROM FOLDER ---------- */
-// Fetches a .obj (and matching .mtl) from the models/ folder by URL.
-// Only works when served over HTTP/HTTPS (i.e. on GitHub Pages).
-// Falls back gracefully if the file is not found.
-async function autoLoadModel(p) {
-  if (!p.model) return;
+/* ---------- VIEWER CREATION ---------- */
+function setupViewer(canvasId, canvasId2) {
+  if (viewers[canvasId]) return viewers[canvasId];
+  const canvas = document.getElementById(canvasId);
+  const wrap = canvas.parentElement;
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  renderer.setPixelRatio(window.devicePixelRatio);
+  renderer.setClearColor(BG_COLOR, 1);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(45, 1, 0.01, 2000);
+  camera.position.set(0, 0, 3);
+  scene.add(new THREE.AmbientLight(0xffffff, 0.45));
+  const d1 = new THREE.DirectionalLight(0xfff8ee, 0.85); d1.position.set(1,2,3); scene.add(d1);
+  const d2 = new THREE.DirectionalLight(0x8899bb, 0.4); d2.position.set(-2,-1,-1); scene.add(d2);
+
+  const state = { renderer, scene, camera, obj: null, autoRotate: true, isDragging: false, prev:{x:0,y:0}, zoom: 3 };
+  viewers[canvasId] = state;
+
+  function resize() {
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    if (w === 0 || h === 0) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w/h; camera.updateProjectionMatrix();
+  }
+  resize();
+  new ResizeObserver(resize).observe(wrap);
+
+  (function animate(){
+    requestAnimationFrame(animate);
+    stepTween(state);
+    if (state.autoRotate && state.obj && !state.isDragging) state.obj.rotation.z += 0.008;
+    syncCube(state);
+    renderer.render(scene, camera);
+  })();
+
+  canvas.addEventListener('mousedown', e => { state.isDragging = true; state.autoRotate = false; state.prev = {x:e.clientX, y:e.clientY}; });
+  window.addEventListener('mouseup', () => state.isDragging = false);
+  canvas.addEventListener('mousemove', e => {
+    if (!state.isDragging || !state.obj) return;
+    state.obj.rotation.y += (e.clientX - state.prev.x) * 0.01;
+    state.obj.rotation.x += (e.clientY - state.prev.y) * 0.01;
+    state.obj.rotation.x = Math.max(-1.52, Math.min(1.52, state.obj.rotation.x));
+    state.prev = {x:e.clientX, y:e.clientY};
+  });
+  canvas.addEventListener('wheel', e => { e.preventDefault(); state.zoom = Math.max(0.6, Math.min(40, state.zoom + e.deltaY * 0.005)); camera.position.z = state.zoom; }, {passive:false});
+  canvas.addEventListener('touchstart', e => { state.isDragging = true; state.autoRotate = false; state.prev = {x:e.touches[0].clientX, y:e.touches[0].clientY}; }, {passive:true});
+  canvas.addEventListener('touchend', () => state.isDragging = false);
+  canvas.addEventListener('touchmove', e => {
+    if (!state.isDragging || !state.obj) return;
+    state.obj.rotation.y += (e.touches[0].clientX - state.prev.x) * 0.01;
+    state.obj.rotation.x += (e.touches[0].clientY - state.prev.y) * 0.01;
+    state.obj.rotation.x = Math.max(-1.52, Math.min(1.52, state.obj.rotation.x));
+    state.prev = {x:e.touches[0].clientX, y:e.touches[0].clientY};
+  }, {passive:true});
+
+  return state;
+}
+
+/* ---------- AUTO-LOAD MODEL ---------- */
+async function autoLoadModel(p, sliderState) {
+  if (!p.model || !sliderState) return;
   const canvasId = 'canvas-' + p.id;
   const state = viewers[canvasId];
   if (!state) return;
-
-  document.getElementById('loading-' + p.id).style.display = 'flex';
-
+  if (sliderState.loadingEl) sliderState.loadingEl.style.display = 'flex';
   try {
     const objRes = await fetch(p.model);
-    if (!objRes.ok) throw new Error('model not found');
+    if (!objRes.ok) throw new Error('not found');
     const objText = await objRes.text();
-
-    // Try to fetch the matching .mtl (same name, .mtl extension)
     let materials = null;
     const mtlPath = p.model.replace(/\.obj$/i, '.mtl');
-    try {
-      const mtlRes = await fetch(mtlPath);
-      if (mtlRes.ok) materials = parseMTL(await mtlRes.text());
-    } catch (_) { /* no MTL is fine */ }
-
+    try { const mtlRes = await fetch(mtlPath); if (mtlRes.ok) materials = parseMTL(await mtlRes.text()); } catch (_) {}
     const obj3d = buildOBJObject(parseOBJ(objText), materials, {});
-    document.getElementById('placeholder-' + p.id).style.display = 'none';
-    document.getElementById(canvasId).style.display = 'block';
-    document.getElementById('fullscreen-' + p.id).style.display = 'flex';
-    document.getElementById('hint-' + p.id).style.display = 'block';
-    document.getElementById('loading-' + p.id).style.display = 'none';
+    if (sliderState.loadingEl) sliderState.loadingEl.style.display = 'none';
     frameInto(state, obj3d);
-
-    // Apply the home angle defined in PROJECTS
     const toRad = d => d * Math.PI / 180;
     const ha = [toRad(p.home[0]), toRad(p.home[1]), toRad(p.home[2] || 0)];
     state.obj.rotation.set(ha[0], ha[1], ha[2]);
     state.homeAngles = ha;
-
+    const fsBtn = document.getElementById('fullscreen-' + p.id);
+    if (fsBtn) fsBtn.style.display = 'flex';
     buildViewCube(document.getElementById('viewcube-' + p.id), state);
-    const readoutEl = document.getElementById('readout-' + p.id);
-    if (readoutEl) buildAngleControl(readoutEl, state);
   } catch (_) {
-    // File not in repo yet — leave the upload placeholder visible
-    document.getElementById('loading-' + p.id).style.display = 'none';
+    if (sliderState.loadingEl) sliderState.loadingEl.style.display = 'none';
   }
 }
 
 /* ---------- RENDER LOOP ---------- */
-// Render all cards, wire up upload handlers, sliders, and auto-loaders.
-// This is the only place you need to change to add a project: add it to PROJECTS above.
 PROJECTS.forEach(p => {
   renderCard(p);
-  setupUpload(
-    'upload-' + p.id,
-    'canvas-' + p.id,
-    'placeholder-' + p.id,
-    'loading-' + p.id,
-    'fullscreen-' + p.id,
-    'hint-' + p.id,
-    'viewcube-' + p.id,
-    p.label
-  );
-  setupPhotoSlider(p.id, p.photos);
-  autoLoadModel(p);
+  const sliderEl = document.getElementById('slider-' + p.id);
+  const viewerConfig = p.model ? { id: p.id, canvasId: 'canvas-' + p.id, label: p.label } : null;
+  const sliderState = setupMediaSlider(sliderEl, viewerConfig, p.photos);
+  if (p.model) autoLoadModel(p, sliderState);
 });
+
+/* ---------- AUTOMOTIVE PHOTO SLIDERS ---------- */
+// Add photo paths for each automotive project here.
+const AUTO_PROJECTS = [
+  { id: 'bmw',  photos: [] },  // e.g. ['images/bmw-1.jpg', 'images/bmw-2.jpg']
+  { id: 'audi', photos: [] }   // e.g. ['images/audi-1.jpg']
+];
+AUTO_PROJECTS.forEach(ap => {
+  const sliderEl = document.getElementById('auto-slider-' + ap.id);
+  if (sliderEl) setupMediaSlider(sliderEl, null, ap.photos);
+});
+
+/* ---------- EMAIL OBFUSCATION ---------- */
+(function() {
+  const u = 'aliaaelashmawy';
+  const d = 'gmail.com';
+  const el = document.getElementById('obf-email');
+  const row = document.getElementById('email-row');
+  if (!el || !row) return;
+  el.addEventListener('click', () => {
+    const addr = u + '@' + d;
+    el.textContent = addr;
+    el.style.cursor = 'default';
+    row.style.cursor = 'pointer';
+    row.addEventListener('click', (e) => { if (e.target !== el) return; window.location.href = 'mailto:' + addr; });
+  });
+})();
 </script>
 </body>
 </html>
